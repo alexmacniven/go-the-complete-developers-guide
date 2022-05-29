@@ -2,6 +2,22 @@ package main
 
 import "fmt"
 
+// The 'bot' interface allows any type that fulfills the
+// requirements to be passed as a variable of type 'bot'.
+// e.g. All types with a 'getGreeting' function can be passed
+// as type 'bot'. Now because the 'printGreeting' function
+// accepts a type of 'bot' both 'englishBot' and 'spanishBot'
+// can be used.
+type bot interface {
+	getGreeting() string
+}
+
+// Both 'englishBot' and 'spanishBot' can be supplied to
+// 'printGreeting' because it has a 'getGreeting' function.
+func printGreeting(b bot) {
+	fmt.Println(b.getGreeting())
+}
+
 type englishBot struct{}
 
 type spanishBot struct{}
@@ -14,14 +30,3 @@ func (englishBot) getGreeting() string {
 func (spanishBot) getGreeting() string {
 	return "Hola!"
 }
-
-// Shared logic between types
-func printGreeting(b englishBot) {
-	fmt.Println(b.getGreeting())
-}
-
-func printGreeting(b spanishBot) {
-	fmt.Println(b.getGreeting())
-}
-
-// When we have types sharing bit's of logic, we can consider if this is an interface candidate.
