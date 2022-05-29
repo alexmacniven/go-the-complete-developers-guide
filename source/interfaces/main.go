@@ -7,11 +7,11 @@ type englishBot struct{}
 type spanishBot struct{}
 
 // Unique logic to each type
-func (b englishBot) getGreeting() string {
+func (englishBot) getGreeting() string {
 	return "Hello!"
 }
 
-func (b spanishBot) getGreeting() string {
+func (spanishBot) getGreeting() string {
 	return "Hola!"
 }
 
